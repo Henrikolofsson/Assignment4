@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_compass"
+            android:icon="@drawable/iconfinder_compass_1291776"
+            android:title="Compass"/>
+
+        <item
+            android:id="@+id/nav_steps"
+            android:icon="@drawable/ic_pan_tool_black_24dp"
+            android:title="Steps"/>
+    </group>
+</menu>
