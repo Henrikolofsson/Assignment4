@@ -16,21 +16,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import SensorListener.SensorListener;
-import Service.StepsService;
 
 public class MainActivity extends AppCompatActivity {
     private Controller controller;
     private FragmentManager fm;
-    private SensorManager sensorManager;
-    private Sensor sensor;
-    private boolean isSensorPresent = false;
-    private SensorListener sensorListener;
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    public StepsService stepsService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        sensorListener = new SensorListener();
     }
 
     @Override
@@ -117,29 +109,4 @@ public class MainActivity extends AppCompatActivity {
         return fm.findFragmentByTag(tag);
     }
 
-    public void registerStepsCounter(){
-        sensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null){
-            sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-            isSensorPresent = true;
-        } else {
-
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(isSensorPresent){
-            sensorManager.registerListener(sensorListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if(isSensorPresent){
-            sensorManager.unregisterListener(sensorListener);
-        }
-    }
 }
